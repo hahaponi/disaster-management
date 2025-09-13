@@ -85,7 +85,7 @@
         <section class="bg-slate-900 p-6 md:p-8 rounded-2xl shadow-xl border border-slate-700 mb-12">
             <details>
                 <summary class="flex items-center justify-between cursor-pointer text-xl font-bold text-white mb-2">
-                    <span>Upcoming Disasters (Within 1-7 days)</span>
+                    <span>Upcoming Disasters (Within 1 month)</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down text-slate-400">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
@@ -99,6 +99,10 @@
                         <li>
                             <p class="font-bold">High Flood Alert: Eastern India</p>
                             <p class="text-sm">Heavy rainfall predicted. River levels may rise rapidly.</p>
+                        </li>
+                        <li>
+                            <p class="font-bold">Monsoon Alert: Central India</p>
+                            <p class="text-sm">Extended heavy monsoon expected over the next 3 weeks, increasing flood risk.</p>
                         </li>
                     </ul>
                     <p class="mt-4 text-sm text-slate-500">
@@ -114,16 +118,17 @@
                 <div class="text-center">
                     <div class="relative inline-flex items-center justify-center p-3 rounded-full bg-red-600 bg-opacity-20 mb-4 icon">
                         <div class="absolute inline-flex h-full w-full bg-red-600 opacity-50 rounded-full pulse-animation"></div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone-call text-red-400">
-                            <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1.55 12.35l-4.47-4.47a.99.99 0 0 0-1.28-.15l-3.83 2.39a1 1 0 0 1-.95 0L4.74 13.5l-2.39 3.83c-.14.2-.14.45 0 .65L3.37 18.5a.99.99 0 0 0 .15 1.28l4.47 4.47a.99.99 0 0 0 1.28-.15l3.83-2.39c.2-.14.45-.14.65 0l2.39 3.83a1 1 0 0 0 1.28.15l4.47-4.47a.99.99 0 0 0 .15-1.28l-2.39-3.83z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send text-red-400">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 10 22 2"></polygon>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-2 text-white">Missed Call for Rescue</h3>
+                    <h3 class="text-2xl font-bold mb-2 text-white">Send SOS</h3>
                     <p class="text-sm text-slate-400 mb-6">
-                        A missed call to <span class="text-red-400 font-bold">112</span> will trigger an immediate rescue alert with your location.
+                        Clicking this button will send an immediate rescue alert with your location to emergency services.
                     </p>
                     <button id="rescueBtn" class="w-full bg-red-600 text-white font-bold py-3 rounded-full transition-all duration-300 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 shadow-md">
-                        Simulate Call to 112
+                        Send SOS
                     </button>
                 </div>
             </div>
@@ -303,8 +308,8 @@
         // Event Listeners
         rescueBtn.addEventListener('click', () => {
             getUserLocation(location => {
-                const msg = `Missed call successfully simulated to 112.`;
-                showMessage('Call Simulated', msg);
+                const msg = `An SOS alert has been sent to emergency services. Your location coordinates (${location.latitude}, ${location.longitude}) have been shared for immediate assistance.`;
+                showMessage('SOS Sent', msg);
             });
         });
 
