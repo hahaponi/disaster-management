@@ -1,30 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disaster Management App</title>
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate-900 */
+            color: #e2e8f0; /* Slate-200 */
+            overflow-x: hidden;
+        }
+        .icon {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+        .card-glow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .pulse-animation {
+            animation: pulse-ring 1.5s cubic-bezier(0.66, 0, 0, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        #safePlacesContainer {
+            display: none;
+        }
 
-    <!-- Local styles -->
-    <link rel="stylesheet" href="styles.css" />
+        /* Styling for the accordion/details sections */
+        details > summary {
+            cursor: pointer;
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details > summary::after {
+            content: '+';
+            font-weight: bold;
+            float: right;
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] > summary::after {
+            content: '-';
+            transform: rotate(45deg);
+        }
+    </style>
 </head>
 <body class="p-6 md:p-12 lg:p-20">
 
-    <!-- Main Container -->
     <div class="max-w-6xl mx-auto">
         <header class="text-center mb-12">
             <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">Disaster Management Portal</h1>
             <p class="text-md md:text-lg text-slate-400">A proactive approach to rescue and relief.</p>
         </header>
 
-        <!-- Warning Messages Section (General) -->
-        <section class="warning-panel mb-12">
+        <section class="bg-red-800 bg-opacity-30 border border-red-700 text-red-300 p-4 md:p-6 rounded-xl mb-12 shadow-2xl">
             <div class="flex items-center space-x-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle text-red-500 flex-shrink-0">
                     <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
@@ -39,15 +81,13 @@
                 </div>
             </div>
         </section>
-
-        <!-- Main Features Grid -->
+        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- Missed Call for Rescue -->
-            <div class="feature-card">
+            <div class="bg-slate-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 card-glow">
                 <div class="text-center">
-                    <div class="icon-wrap mb-4">
-                        <div class="pulse-bg"></div>
+                    <div class="relative inline-flex items-center justify-center p-3 rounded-full bg-red-600 bg-opacity-20 mb-4 icon">
+                        <div class="absolute inline-flex h-full w-full bg-red-600 opacity-50 rounded-full pulse-animation"></div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone-call text-red-400">
                             <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1.55 12.35l-4.47-4.47a.99.99 0 0 0-1.28-.15l-3.83 2.39a1 1 0 0 1-.95 0L4.74 13.5l-2.39 3.83c-.14.2-.14.45 0 .65L3.37 18.5a.99.99 0 0 0 .15 1.28l4.47 4.47a.99.99 0 0 0 1.28-.15l3.83-2.39c.2-.14.45-.14.65 0l2.39 3.83a1 1 0 0 0 1.28.15l4.47-4.47a.99.99 0 0 0 .15-1.28l-2.39-3.83z"></path>
                         </svg>
@@ -56,72 +96,14 @@
                     <p class="text-sm text-slate-400 mb-6">
                         A missed call to <span class="text-red-400 font-bold">112</span> will trigger an immediate rescue alert with your location.
                     </p>
-                    <button id="rescueBtn" class="action-btn red">Simulate Call to 112</button>
+                    <button id="rescueBtn" class="w-full bg-red-600 text-white font-bold py-3 rounded-full transition-all duration-300 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 shadow-md">
+                        Simulate Call to 112
+                    </button>
                 </div>
             </div>
-
-            <!-- Missed Call for Essentials -->
-            <div class="feature-card">
-                <div class="text-center">
-                    <div class="icon-wrap blue mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag text-blue-400">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <path d="M16 10a4 4 0 0 1-8 0"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-white">Missed Call for Essentials</h3>
-                    <p class="text-sm text-slate-400 mb-6">
-                        A missed call to <span class="text-blue-400 font-bold">1070</span> will request essential supplies for your area.
-                    </p>
-                    <button id="essentialsBtn" class="action-btn blue">Simulate Call to 1070</button>
-                </div>
-            </div>
-
-            <!-- Drone & Logistics -->
-            <div class="feature-card">
-                <div class="text-center">
-                    <div class="icon-wrap green mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-aperture text-green-400">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
-                            <line x1="9.69" y1="8" x2="2.35" y2="17.94"></line>
-                            <line x1="21.5" y1="12" x2="16.31" y2="12"></line>
-                            <line x1="6.04" y1="3.52" x2="10.27" y2="7.86"></line>
-                            <line x1="10.27" y1="16.14" x2="6.04" y2="20.48"></line>
-                            <line x1="3.52" y1="12" x2="7.65" y2="12"></line>
-                            <line x1="18.36" y1="19.01" x2="13.92" y2="14.01"></line>
-                            <line x1="13.92" y1="10" x2="18.36" y2="5.01"></line>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-white">Drone Monitoring & Logistics</h3>
-                    <p class="text-sm text-slate-400 mb-6">
-                        Monitor affected regions and deliver essentials using autonomous drone technology.
-                    </p>
-                    <button id="droneBtn" class="action-btn green">Simulate Drone Deployment</button>
-                </div>
-            </div>
-
-            <!-- Emergency Energy Kit -->
-            <div class="feature-card">
-                <div class="text-center">
-                    <div class="icon-wrap yellow mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap text-yellow-400">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-white">Emergency Energy Kit</h3>
-                    <p class="text-sm text-slate-400 mb-6">
-                        Provide a reliable power source for devices and essential equipment in power outage areas.
-                    </p>
-                    <button id="lightsBtn" class="action-btn yellow">Simulate Energy Kit Activation</button>
-                </div>
-            </div>
-
         </div>
 
-        <!-- New Section: Safe Places -->
-        <section id="safePlacesContainer" class="safe-places">
+        <section id="safePlacesContainer" class="bg-slate-900 p-6 md:p-8 rounded-2xl shadow-xl border border-slate-700 mb-12 mt-12">
             <div class="flex items-center space-x-4 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin text-purple-400">
                     <path d="M12 2C8.686 2 6 4.686 6 8s6 14 6 14s6-10.686 6-14s-2.686-6-6-6z"></path>
@@ -131,11 +113,9 @@
             </div>
             <p class="text-slate-400 mb-4">Finding nearby safe locations for evacuation. Please enable location services for the best results.</p>
             <div id="safePlacesList" class="space-y-4">
-                <!-- Safe places will be dynamically loaded here -->
-            </div>
+                </div>
         </section>
 
-        <!-- New Section: Disaster Precautions -->
         <section class="bg-slate-900 p-6 md:p-8 rounded-2xl shadow-xl border border-slate-700 mb-12">
             <div class="flex items-center space-x-4 mb-4">
                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield text-emerald-400">
@@ -213,16 +193,104 @@
         </section>
     </div>
 
-    <!-- Message Box (Modal) -->
     <div id="messageBox" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center p-4 z-50">
-        <div class="modal-card">
+        <div class="bg-slate-800 p-6 rounded-xl shadow-2xl max-w-sm w-full text-center border border-slate-700">
             <h3 id="messageTitle" class="text-xl font-bold mb-4 text-white"></h3>
             <p id="messageBody" class="text-slate-400 mb-6"></p>
-            <button id="closeMsgBtn" class="modal-close-btn">Close</button>
+            <button id="closeMsgBtn" class="w-full bg-slate-700 text-white font-bold py-3 rounded-full hover:bg-slate-600 transition-colors duration-300">Close</button>
         </div>
     </div>
 
-    <!-- Local script -->
-    <script src="script.js"></script>
+    <script>
+        // DOM Elements
+        const rescueBtn = document.getElementById('rescueBtn');
+        const messageBox = document.getElementById('messageBox');
+        const messageTitle = document.getElementById('messageTitle');
+        const messageBody = document.getElementById('messageBody');
+        const closeMsgBtn = document.getElementById('closeMsgBtn');
+        const safePlacesContainer = document.getElementById('safePlacesContainer');
+        const safePlacesList = document.getElementById('safePlacesList');
+
+        // Show a custom message box instead of alert()
+        function showMessage(title, body) {
+            messageTitle.textContent = title;
+            messageBody.textContent = body;
+            messageBox.classList.remove('hidden');
+            messageBox.classList.add('flex');
+        }
+        
+        // Function to find and display nearby safe places
+        function findSafePlaces() {
+            // Simulated safe places data (in a real app, this would come from an API)
+            const simulatedSafePlaces = [
+                { name: "Community Hall (Evacuation Shelter)", distance: "0.5 km" },
+                { name: "Local School (Designated Shelter)", distance: "1.2 km" },
+                { name: "Public Library", distance: "2.1 km" },
+            ];
+
+            safePlacesList.innerHTML = '';
+            simulatedSafePlaces.forEach(place => {
+                const item = document.createElement('div');
+                item.className = "bg-slate-800 p-4 rounded-xl flex items-center justify-between";
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home text-blue-400 flex-shrink-0">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span class="text-slate-200 font-medium">${place.name}</span>
+                    </div>
+                    <span class="text-sm text-slate-400">${place.distance}</span>
+                `;
+                safePlacesList.appendChild(item);
+            });
+            safePlacesContainer.style.display = 'block';
+        }
+
+        // Geolocation function
+        function getUserLocation(callback) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const { latitude, longitude } = position.coords;
+                        callback({
+                            success: true,
+                            latitude: latitude.toFixed(4),
+                            longitude: longitude.toFixed(4)
+                        });
+                    },
+                    error => {
+                        callback({
+                            success: false,
+                            message: 'Location access denied. Using simulated location.'
+                        });
+                    }
+                );
+            } else {
+                callback({
+                    success: false,
+                    message: 'Geolocation not supported. Using simulated location.'
+                });
+            }
+        }
+
+        // Event Listeners
+        rescueBtn.addEventListener('click', () => {
+            getUserLocation(location => {
+                const msg = `Missed call successfully simulated to 112.`;
+                showMessage('Call Simulated', msg);
+            });
+        });
+
+        closeMsgBtn.addEventListener('click', () => {
+            messageBox.classList.remove('flex');
+            messageBox.classList.add('hidden');
+        });
+
+        // Immediately find and display safe places on page load
+        window.onload = findSafePlaces;
+
+    </script>
+
 </body>
 </html>
