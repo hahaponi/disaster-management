@@ -1,0 +1,5 @@
+[
+  { "name": "Relief Camp 1", "lat": 23.456, "lon": 85.321 },
+  { "name": "School Shelter", "lat": 23.460, "lon": 85.330 },
+  { "name": "Community Hall", "lat": 23.470, "lon": 85.340 }
+]
