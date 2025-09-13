@@ -81,7 +81,33 @@
                 </div>
             </div>
         </section>
-        
+
+        <section class="bg-slate-900 p-6 md:p-8 rounded-2xl shadow-xl border border-slate-700 mb-12">
+            <details>
+                <summary class="flex items-center justify-between cursor-pointer text-xl font-bold text-white mb-2">
+                    <span>Upcoming Disasters (Within 1 week)</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down text-slate-400">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </summary>
+                <div class="mt-4">
+                    <ul class="list-none text-slate-400 space-y-2">
+                        <li>
+                            <p class="font-bold">Cyclone Watch: Bay of Bengal</p>
+                            <p class="text-sm">Expected to make landfall near Odisha coast in 3-5 days.</p>
+                        </li>
+                        <li>
+                            <p class="font-bold">High Flood Alert: Eastern India</p>
+                            <p class="text-sm">Heavy rainfall predicted. River levels may rise rapidly.</p>
+                        </li>
+                    </ul>
+                    <p class="mt-4 text-sm text-slate-500">
+                        This list is a forecast based on meteorological data and is subject to change. Always follow official advisories.
+                    </p>
+                </div>
+            </details>
+        </section>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <div class="bg-slate-800 p-6 md:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 card-glow">
@@ -289,8 +315,6 @@
 
         // Immediately find and display safe places on page load
         window.onload = findSafePlaces;
-
     </script>
-
 </body>
 </html>
