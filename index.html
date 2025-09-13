@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Disaster Management App</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Local styles -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="p-6 md:p-12 lg:p-20">
+
+    <!-- Main Container -->
+    <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">Disaster Management Portal</h1>
+            <p class="text-md md:text-lg text-slate-400">A proactive approach to rescue and relief.</p>
+        </header>
+
+        <!-- Warning Messages Section (General) -->
+        <section class="warning-panel mb-12">
+            <div class="flex items-center space-x-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle text-red-500 flex-shrink-0">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <div>
+                    <h2 class="text-xl font-bold">Emergency Warning</h2>
+                    <p class="mt-2 text-sm md:text-base">
+                        A disaster event is occurring. Stay calm, seek shelter, and follow official emergency instructions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Missed Call for Rescue -->
+            <div class="feature-card">
+                <div class="text-center">
+                    <div class="icon-wrap mb-4">
+                        <div class="pulse-bg"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone-call text-red-400">
+                            <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1.55 12.35l-4.47-4.47a.99.99 0 0 0-1.28-.15l-3.83 2.39a1 1 0 0 1-.95 0L4.74 13.5l-2.39 3.83c-.14.2-.14.45 0 .65L3.37 18.5a.99.99 0 0 0 .15 1.28l4.47 4.47a.99.99 0 0 0 1.28-.15l3.83-2.39c.2-.14.45-.14.65 0l2.39 3.83a1 1 0 0 0 1.28.15l4.47-4.47a.99.99 0 0 0 .15-1.28l-2.39-3.83z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white">Missed Call for Rescue</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        A missed call to <span class="text-red-400 font-bold">112</span> will trigger an immediate rescue alert with your location.
+                    </p>
+                    <button id="rescueBtn" class="action-btn red">Simulate Call to 112</button>
+                </div>
+            </div>
+
+            <!-- Missed Call for Essentials -->
+            <div class="feature-card">
+                <div class="text-center">
+                    <div class="icon-wrap blue mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag text-blue-400">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white">Missed Call for Essentials</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        A missed call to <span class="text-blue-400 font-bold">1070</span> will request essential supplies for your area.
+                    </p>
+                    <button id="essentialsBtn" class="action-btn blue">Simulate Call to 1070</button>
+                </div>
+            </div>
+
+            <!-- Drone & Logistics -->
+            <div class="feature-card">
+                <div class="text-center">
+                    <div class="icon-wrap green mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-aperture text-green-400">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+                            <line x1="9.69" y1="8" x2="2.35" y2="17.94"></line>
+                            <line x1="21.5" y1="12" x2="16.31" y2="12"></line>
+                            <line x1="6.04" y1="3.52" x2="10.27" y2="7.86"></line>
+                            <line x1="10.27" y1="16.14" x2="6.04" y2="20.48"></line>
+                            <line x1="3.52" y1="12" x2="7.65" y2="12"></line>
+                            <line x1="18.36" y1="19.01" x2="13.92" y2="14.01"></line>
+                            <line x1="13.92" y1="10" x2="18.36" y2="5.01"></line>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white">Drone Monitoring & Logistics</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        Monitor affected regions and deliver essentials using autonomous drone technology.
+                    </p>
+                    <button id="droneBtn" class="action-btn green">Simulate Drone Deployment</button>
+                </div>
+            </div>
+
+            <!-- Emergency Energy Kit -->
+            <div class="feature-card">
+                <div class="text-center">
+                    <div class="icon-wrap yellow mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap text-yellow-400">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white">Emergency Energy Kit</h3>
+                    <p class="text-sm text-slate-400 mb-6">
+                        Provide a reliable power source for devices and essential equipment in power outage areas.
+                    </p>
+                    <button id="lightsBtn" class="action-btn yellow">Simulate Energy Kit Activation</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- New Section: Safe Places -->
+        <section id="safePlacesContainer" class="safe-places">
+            <div class="flex items-center space-x-4 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin text-purple-400">
+                    <path d="M12 2C8.686 2 6 4.686 6 8s6 14 6 14s6-10.686 6-14s-2.686-6-6-6z"></path>
+                    <circle cx="12" cy="8" r="3"></circle>
+                </svg>
+                <h2 class="text-2xl font-bold text-white">Safe Places Nearby</h2>
+            </div>
+            <p class="text-slate-400 mb-4">Finding nearby safe locations for evacuation. Please enable location services for the best results.</p>
+            <div id="safePlacesList" class="space-y-4">
+                <!-- Safe places will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- New Section: Disaster Precautions -->
+        <section class="bg-slate-900 p-6 md:p-8 rounded-2xl shadow-xl border border-slate-700 mb-12">
+            <div class="flex items-center space-x-4 mb-4">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield text-emerald-400">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <h2 class="text-2xl font-bold text-white">Disaster Precautions</h2>
+            </div>
+            <p class="text-slate-400 mb-4">Click on a disaster type to see the precautions.</p>
+            <div class="space-y-4">
+                <details class="bg-slate-800 p-4 rounded-xl">
+                    <summary class="text-xl font-bold text-white mb-2">General Precautions for all Disasters</summary>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2 mt-4">
+                        <li>Stay calm and do not panic.</li>
+                        <li>Have an emergency kit ready with food, water, medicine, and important documents.</li>
+                        <li>Listen to official news and emergency broadcasts for instructions.</li>
+                        <li>Know the evacuation routes and safe places in your area.</li>
+                        <li>Check on your family, friends, and neighbors to ensure they are safe.</li>
+                    </ul>
+                </details>
+                <details class="bg-slate-800 p-4 rounded-xl">
+                    <summary class="text-xl font-bold text-white mb-2">During an Earthquake</summary>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2 mt-4">
+                        <li>Drop, cover, and hold on.</li>
+                        <li>Stay away from windows, mirrors, and anything that could fall.</li>
+                        <li>If you are outdoors, move to a clear area away from buildings, trees, and power lines.</li>
+                        <li>Do not use elevators.</li>
+                    </ul>
+                </details>
+                <details class="bg-slate-800 p-4 rounded-xl">
+                    <summary class="text-xl font-bold text-white mb-2">During a Flood</summary>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2 mt-4">
+                        <li>Move to higher ground immediately.</li>
+                        <li>Do not walk or drive through floodwaters.</li>
+                        <li>Listen to official updates and evacuation orders.</li>
+                        <li>Turn off all utilities at the main power switch if you can do so safely.</li>
+                    </ul>
+                </details>
+                <details class="bg-slate-800 p-4 rounded-xl">
+                    <summary class="text-xl font-bold text-white mb-2">During a Cyclone</summary>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2 mt-4">
+                        <li>Stay indoors in a safe room, away from windows.</li>
+                        <li>Secure all loose items outdoors.</li>
+                        <li>Have an emergency kit ready with food, water, and first aid.</li>
+                        <li>Listen to a battery-powered radio for official updates.</li>
+                    </ul>
+                </details>
+                <details class="bg-slate-800 p-4 rounded-xl">
+                    <summary class="text-xl font-bold text-white mb-2">During a Fire Hazard</summary>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2 mt-4">
+                        <li>Sound the fire alarm and evacuate immediately.</li>
+                        <li>Evacuate the building using stairs, not elevators.</li>
+                        <li>If possible, use a fire extinguisher on small fires.</li>
+                        <li>Feel doors for heat before opening. If hot, use an alternate escape route.</li>
+                    </ul>
+                </details>
+                <details class="bg-slate-800 p-4 rounded-xl">
+                    <summary class="text-xl font-bold text-white mb-2">During a Chemical Hazard</summary>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2 mt-4">
+                        <li>Stay indoors and close all windows and doors.</li>
+                        <li>Turn off air conditioners and ventilation systems.</li>
+                        <li>Listen to emergency broadcasts for "shelter-in-place" or "evacuate" orders.</li>
+                        <li>Cover your nose and mouth with a damp cloth if you must leave.</li>
+                    </ul>
+                </details>
+                <details class="bg-slate-800 p-4 rounded-xl">
+                    <summary class="text-xl font-bold text-white mb-2">During a Road Accident</summary>
+                    <ul class="list-disc list-inside text-slate-400 space-y-2 mt-4">
+                        <li>Remain calm and move your vehicle to the side of the road if safe.</li>
+                        <li>Turn on your hazard lights.</li>
+                        <li>Assess for injuries and administer first aid if you are trained and it is safe to do so.</li>
+                        <li>Set up warning triangles or flares to alert other drivers.</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+    </div>
+
+    <!-- Message Box (Modal) -->
+    <div id="messageBox" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center p-4 z-50">
+        <div class="modal-card">
+            <h3 id="messageTitle" class="text-xl font-bold mb-4 text-white"></h3>
+            <p id="messageBody" class="text-slate-400 mb-6"></p>
+            <button id="closeMsgBtn" class="modal-close-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Local script -->
+    <script src="script.js"></script>
+</body>
+</html>
