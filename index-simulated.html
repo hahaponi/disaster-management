@@ -3,27 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Disaster Management App</title>
+  <title>Disaster Management App - Simulation</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="p-6 md:p-12 lg:p-20 bg-slate-950 text-white">
 
   <div class="max-w-6xl mx-auto">
     <header class="text-center mb-12">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2">Disaster Management Portal</h1>
-      <p class="text-md md:text-lg text-slate-400">A proactive approach to rescue and relief.</p>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2">Disaster Management Portal (Simulated)</h1>
+      <p class="text-md md:text-lg text-slate-400">Simulating safe places based on mock locations.</p>
     </header>
 
     <!-- Safe Places Section -->
     <section id="safePlacesContainer" class="bg-slate-900 p-6 rounded-2xl shadow-xl border border-slate-700 mb-12">
       <h2 class="text-2xl font-bold mb-4">Safe Places Nearby</h2>
-      <p class="text-slate-400 mb-4">Finding nearby safe locations. Please enable location services.</p>
+      <p class="text-slate-400 mb-4">Simulated locations. Click a city below to see nearby safe places.</p>
+
+      <div class="mb-4 space-x-4">
+        <button onclick="simulateLocation(25.61, 85.14, 'Patna')" class="bg-purple-600 px-4 py-2 rounded-lg">Patna</button>
+        <button onclick="simulateLocation(20.27, 85.84, 'Bhubaneswar')" class="bg-purple-600 px-4 py-2 rounded-lg">Bhubaneswar</button>
+        <button onclick="simulateLocation(26.18, 91.75, 'Guwahati')" class="bg-purple-600 px-4 py-2 rounded-lg">Guwahati</button>
+      </div>
+
       <div id="safePlacesList" class="space-y-4"></div>
     </section>
   </div>
 
   <script>
-    async function fetchSafePlaces(lat, lon) {
+    async function simulateLocation(lat, lon, cityName) {
+      document.getElementById("safePlacesList").innerHTML = `<p class="text-slate-400">Fetching safe places near ${cityName}...</p>`;
       try {
         const res = await fetch(`http://localhost:5000/api/safeplaces?lat=${lat}&lon=${lon}`);
         const safePlaces = await res.json();
@@ -38,12 +46,8 @@
             <h3 class="font-bold text-lg">${place.name} 
               <span class="text-purple-400 text-sm">(${place.type})</span>
             </h3>
-            <p class="text-slate-400">
-              Lat: ${place.lat}, Lon: ${place.lon}
-            </p>
-            <p class="text-green-400 font-semibold">
-              Distance: ${place.distance.toFixed(2)} km
-            </p>
+            <p class="text-slate-400">Lat: ${place.lat}, Lon: ${place.lon}</p>
+            <p class="text-green-400 font-semibold">Distance: ${place.distance.toFixed(2)} km</p>
           `;
           listDiv.appendChild(div);
         });
@@ -52,21 +56,7 @@
           `<p class="text-red-400">Error fetching safe places.</p>`;
       }
     }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          fetchSafePlaces(pos.coords.latitude, pos.coords.longitude);
-        },
-        () => {
-          document.getElementById("safePlacesList").innerHTML =
-            `<p class="text-red-400">Location access denied.</p>`;
-        }
-      );
-    } else {
-      document.getElementById("safePlacesList").innerHTML =
-        `<p class="text-red-400">Geolocation not supported in this browser.</p>`;
-    }
   </script>
+
 </body>
 </html>
